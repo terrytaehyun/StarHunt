@@ -6,121 +6,199 @@
 //  Copyright (c) 2015년 Tae Hyun Kim. All rights reserved.
 //
 
+// Using @import, Xcode will add the framework to the project automatically
+// While using #import, we have to do this manually
+@import AVFoundation;
+
 #import "GameViewController.h"
+#import "MyScene.h"
+#import "Level.h"
+
+// This @interface at .m file allows us to hide any internal variables
+// Catagory name can be placed in the bracket, works are a namespace
+// To use the catafory, the @implementation GameViewController(CAT_NAME)
+@interface GameViewController ()
+    @property (strong, nonatomic) AVAudioPlayer *backgrounMusic;
+
+    @property (strong, nonatomic) MyScene *scene;
+    @property (strong, nonatomic) Level *level;
+
+    @property (assign, nonatomic) NSUInteger movesLeft;
+    @property (assign, nonatomic) NSUInteger score;
+
+    @property (weak, nonatomic) IBOutlet UILabel *targetLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *movesLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
+    @property (weak, nonatomic) IBOutlet UIImageView *gameOverPanel;
+    @property (strong, nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
+
+    @property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
+@end
+
 
 @implementation GameViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // create a new scene
-    SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.dae"];
-
-    // create and add a camera to the scene
-    SCNNode *cameraNode = [SCNNode node];
-    cameraNode.camera = [SCNCamera camera];
-    [scene.rootNode addChildNode:cameraNode];
     
-    // place the camera
-    cameraNode.position = SCNVector3Make(0, 0, 15);
+    // Configure the view
+    SKView *skView = (SKView *)self.view;
+    skView.multipleTouchEnabled = NO;
     
-    // create and add a light to the scene
-    SCNNode *lightNode = [SCNNode node];
-    lightNode.light = [SCNLight light];
-    lightNode.light.type = SCNLightTypeOmni;
-    lightNode.position = SCNVector3Make(0, 10, 10);
-    [scene.rootNode addChildNode:lightNode];
+    // Create and configure the scene
+    self.scene = [MyScene sceneWithSize:skView.bounds.size];
+    self.scene.scaleMode = SKSceneScaleModeAspectFill;
     
-    // create and add an ambient light to the scene
-    SCNNode *ambientLightNode = [SCNNode node];
-    ambientLightNode.light = [SCNLight light];
-    ambientLightNode.light.type = SCNLightTypeAmbient;
-    ambientLightNode.light.color = [UIColor darkGrayColor];
-    [scene.rootNode addChildNode:ambientLightNode];
+    // Load the level
+    self.level = [[Level alloc] initWithFile:@"Level_3"];
+    self.scene.level = self.level;
+    [self.scene addTiles];
     
-    // retrieve the ship node
-    SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
-    
-    // animate the 3d object
-    [ship runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
-    
-    // retrieve the SCNView
-    SCNView *scnView = (SCNView *)self.view;
-    
-    // set the scene to the view
-    scnView.scene = scene;
-    
-    // allows the user to manipulate the camera
-    scnView.allowsCameraControl = YES;
+    id block = ^(MySwap *swap) {
+        self.view.userInteractionEnabled = NO;
+        if ([self.level isPossibleSwap:swap]) {
+            [self.level performSwap:swap];
+            [self.scene animateSwap:swap completion:^{
+                [self handleMatches];
+            }];
+        } else {
+            [self.scene animateInvalidSwap:swap completion:^{
+                self.view.userInteractionEnabled = YES;
+            }];
+        }
         
-    // show statistics such as fps and timing information
-    scnView.showsStatistics = YES;
-
-    // configure the view
-    scnView.backgroundColor = [UIColor blackColor];
+    };
     
-    // add a tap gesture recognizer
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    NSMutableArray *gestureRecognizers = [NSMutableArray array];
-    [gestureRecognizers addObject:tapGesture];
-    [gestureRecognizers addObjectsFromArray:scnView.gestureRecognizers];
-    scnView.gestureRecognizers = gestureRecognizers;
+    self.scene.swipeHandler = block;
+    
+    // Hiding the game over panel at the start of the game
+    self.gameOverPanel.hidden = YES;
+    
+    // Present the Scene
+    [skView presentScene:self.scene];
+    
+    // Play the BGM
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Mining by Moonlight" withExtension:@"mp3"];
+    self.backgrounMusic = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    self.backgrounMusic.numberOfLoops = -1;
+    [self.backgrounMusic play];
+    
+    // Start Game
+    [self beginGame];
+    
 }
 
-- (void) handleTap:(UIGestureRecognizer*)gestureRecognize
-{
-    // retrieve the SCNView
-    SCNView *scnView = (SCNView *)self.view;
+- (void)beginGame {
+    self.movesLeft = self.level.maximumMoves;
+    self.score = 0;
+    [self updateLabels];
+    [self.level resetComboMultiplier];
     
-    // check what nodes are tapped
-    CGPoint p = [gestureRecognize locationInView:scnView];
-    NSArray *hitResults = [scnView hitTest:p options:nil];
+    // Show the game layer - make the game layer to appear with animation
+    [self.scene animateBeginGame];
     
-    // check that we clicked on at least one object
-    if([hitResults count] > 0){
-        // retrieved the first clicked object
-        SCNHitTestResult *result = [hitResults objectAtIndex:0];
+    [self shuffle];
+}
+
+- (void)shuffle {
+    // Clear all cookie sprites from previous game
+    [self.scene removeAllCookieSprite];
+    
+    NSSet *newCookies = [self.level shuffle];
+    [self.scene addSpritesForCookies:newCookies];
+}
+
+- (void)handleMatches {
+    NSSet *chains = [self.level removeMatches];
+    
+    // End condition for handleMatches recursion
+    if ([chains count] == 0) {
+        [self beginNextTurn];
+        return;
+    }
+    
+    [self.scene animateMatchedCookies:chains completion:^{
         
-        // get its material
-        SCNMaterial *material = result.node.geometry.firstMaterial;
+        for (Chain *chain in chains) {
+            self.score += chain.score;
+        }
+        [self updateLabels];
         
-        // highlight it
-        [SCNTransaction begin];
-        [SCNTransaction setAnimationDuration:0.5];
-        
-        // on completion - unhighlight
-        [SCNTransaction setCompletionBlock:^{
-            [SCNTransaction begin];
-            [SCNTransaction setAnimationDuration:0.5];
-            
-            material.emission.contents = [UIColor blackColor];
-            
-            [SCNTransaction commit];
+        NSArray *columns = [self.level fillHoles];
+        [self.scene animateFallingCookies:columns completion:^{
+            NSArray *columns = [self.level topUpCookies];
+            [self.scene animateNewCookies:columns completion:^{
+                // recursively call handleMatches until no chain is present
+                [self handleMatches];
+            }];
         }];
-        
-        material.emission.contents = [UIColor redColor];
-        
-        [SCNTransaction commit];
+    }];
+}
+
+- (void) beginNextTurn {
+    [self.level resetComboMultiplier];
+    // new set of cookies have created - need to recalculate possible swaps
+    [self.level detectPossibleSwaps];
+    [self decrementMoves];
+    self.view.userInteractionEnabled = YES;
+}
+
+- (void)updateLabels {
+    self.targetLabel.text = [NSString stringWithFormat:@"%lu", (long)self.level.targetScore];
+    self.movesLabel.text = [NSString stringWithFormat:@"%lu", (long)self.movesLeft];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%lu", (long)self.score];
+}
+
+- (void)decrementMoves {
+    self.movesLeft--;
+    [self updateLabels];
+    
+    // Checks for game ending condition, and sets image to the UIImage view
+    // accordingly
+    if (self.score >= self.level.targetScore) {
+        self.gameOverPanel.image = [UIImage imageNamed:@"LevelComplete"];
+        [self showGameOver];
+    } else if (self.movesLeft == 0) {
+        self.gameOverPanel.image = [UIImage imageNamed:@"GameOver"];
+        [self showGameOver];
     }
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
+- (void)showGameOver {
+    [self.scene animateGameOver];
+    
+    self.gameOverPanel.hidden = NO;
+    self.scene.userInteractionEnabled = NO;
+    
+    self.shuffleButton.hidden = YES;
+    
+    // user interaction is restricted to tap only
+    // Once user tabs, hideGameOver will be called to restart the game
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideGameOver)];
+    [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+
+- (void)hideGameOver {
+    [self.view removeGestureRecognizer:self.tapGestureRecognizer];
+    self.tapGestureRecognizer = nil;
+    
+    self.gameOverPanel.hidden = YES;
+    self.scene.userInteractionEnabled = YES;
+    
+    self.shuffleButton.hidden = NO;
+
+    [self beginGame];
+}
+
+- (IBAction)shuffleButtonPressed:(id)sender {
+    [self shuffle];
+    [self decrementMoves];
 }
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
 }
 
 - (void)didReceiveMemoryWarning

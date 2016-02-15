@@ -15,6 +15,25 @@
 		3BBFCBCC1C2F69370005EF79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBCB1C2F69370005EF79 /* Images.xcassets */; };
 		3BBFCBCF1C2F69370005EF79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBCD1C2F69370005EF79 /* LaunchScreen.xib */; };
 		3BBFCBDB1C2F69370005EF79 /* StarHuntTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBDA1C2F69370005EF79 /* StarHuntTests.m */; };
+		3BBFCBE51C2F6A390005EF79 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBE41C2F6A390005EF79 /* Sprites.atlas */; };
+		3BBFCBE71C321E240005EF79 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBE61C321E240005EF79 /* MyScene.m */; };
+		3BBFCBEA1C3247CB0005EF79 /* Cookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBE91C3247CB0005EF79 /* Cookie.m */; };
+		3BBFCBED1C3382CE0005EF79 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBEC1C3382CE0005EF79 /* Level.m */; };
+		3BBFCBF51C350C7C0005EF79 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBF01C350C7C0005EF79 /* Level_0.json */; };
+		3BBFCBF61C350C7C0005EF79 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBF11C350C7C0005EF79 /* Level_1.json */; };
+		3BBFCBF71C350C7C0005EF79 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBF21C350C7C0005EF79 /* Level_2.json */; };
+		3BBFCBF81C350C7C0005EF79 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBF31C350C7C0005EF79 /* Level_3.json */; };
+		3BBFCBF91C350C7C0005EF79 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCBF41C350C7C0005EF79 /* Level_4.json */; };
+		3BBFCBFB1C350CC70005EF79 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBFA1C350CC70005EF79 /* Tile.m */; };
+		3BBFCBFE1C365EB80005EF79 /* MySwap.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCBFD1C365EB80005EF79 /* MySwap.m */; };
+		3BBFCC071C37A2380005EF79 /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC011C37A2380005EF79 /* Chomp.wav */; };
+		3BBFCC081C37A2380005EF79 /* Drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC021C37A2380005EF79 /* Drip.wav */; };
+		3BBFCC091C37A2380005EF79 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC031C37A2380005EF79 /* Error.wav */; };
+		3BBFCC0A1C37A2380005EF79 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC041C37A2380005EF79 /* Ka-Ching.wav */; };
+		3BBFCC0B1C37A2380005EF79 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC051C37A2380005EF79 /* Mining by Moonlight.mp3 */; };
+		3BBFCC0C1C37A2380005EF79 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC061C37A2380005EF79 /* Scrape.wav */; };
+		3BBFCC0E1C3999900005EF79 /* Chain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFCC0D1C3999900005EF79 /* Chain.m */; };
+		3BBFCC111C5464260005EF79 /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFCC101C5464260005EF79 /* Grid.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +61,31 @@
 		3BBFCBD41C2F69370005EF79 /* StarHuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarHuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBFCBD91C2F69370005EF79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BBFCBDA1C2F69370005EF79 /* StarHuntTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarHuntTests.m; sourceTree = "<group>"; };
+		3BBFCBE41C2F6A390005EF79 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
+		3BBFCBE61C321E240005EF79 /* MyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
+		3BBFCBE81C321E650005EF79 /* MyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyScene.h; sourceTree = "<group>"; };
+		3BBFCBE91C3247CB0005EF79 /* Cookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cookie.m; sourceTree = "<group>"; };
+		3BBFCBEB1C3247D50005EF79 /* Cookie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cookie.h; sourceTree = "<group>"; };
+		3BBFCBEC1C3382CE0005EF79 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		3BBFCBEE1C3382D80005EF79 /* Level.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		3BBFCBF01C350C7C0005EF79 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
+		3BBFCBF11C350C7C0005EF79 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
+		3BBFCBF21C350C7C0005EF79 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
+		3BBFCBF31C350C7C0005EF79 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
+		3BBFCBF41C350C7C0005EF79 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
+		3BBFCBFA1C350CC70005EF79 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tile.m; path = Levels/Tile.m; sourceTree = "<group>"; };
+		3BBFCBFC1C350CCE0005EF79 /* Tile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Tile.h; path = Levels/Tile.h; sourceTree = "<group>"; };
+		3BBFCBFD1C365EB80005EF79 /* MySwap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySwap.m; sourceTree = "<group>"; };
+		3BBFCBFF1C365EC00005EF79 /* MySwap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySwap.h; sourceTree = "<group>"; };
+		3BBFCC011C37A2380005EF79 /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
+		3BBFCC021C37A2380005EF79 /* Drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drip.wav; sourceTree = "<group>"; };
+		3BBFCC031C37A2380005EF79 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Error.wav; sourceTree = "<group>"; };
+		3BBFCC041C37A2380005EF79 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
+		3BBFCC051C37A2380005EF79 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
+		3BBFCC061C37A2380005EF79 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		3BBFCC0D1C3999900005EF79 /* Chain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chain.m; sourceTree = "<group>"; };
+		3BBFCC0F1C3999950005EF79 /* Chain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chain.h; sourceTree = "<group>"; };
+		3BBFCC101C5464260005EF79 /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +132,25 @@
 				3BBFCBC31C2F69370005EF79 /* art.scnassets */,
 				3BBFCBC51C2F69370005EF79 /* GameViewController.h */,
 				3BBFCBC61C2F69370005EF79 /* GameViewController.m */,
+				3BBFCBEB1C3247D50005EF79 /* Cookie.h */,
+				3BBFCBE91C3247CB0005EF79 /* Cookie.m */,
+				3BBFCC0F1C3999950005EF79 /* Chain.h */,
+				3BBFCC0D1C3999900005EF79 /* Chain.m */,
+				3BBFCBEE1C3382D80005EF79 /* Level.h */,
+				3BBFCBEC1C3382CE0005EF79 /* Level.m */,
+				3BBFCBE81C321E650005EF79 /* MyScene.h */,
+				3BBFCBE61C321E240005EF79 /* MyScene.m */,
+				3BBFCBFF1C365EC00005EF79 /* MySwap.h */,
+				3BBFCBFD1C365EB80005EF79 /* MySwap.m */,
+				3BBFCBFC1C350CCE0005EF79 /* Tile.h */,
+				3BBFCBFA1C350CC70005EF79 /* Tile.m */,
 				3BBFCBC81C2F69370005EF79 /* Main.storyboard */,
 				3BBFCBCB1C2F69370005EF79 /* Images.xcassets */,
 				3BBFCBCD1C2F69370005EF79 /* LaunchScreen.xib */,
+				3BBFCBEF1C350C7C0005EF79 /* Levels */,
+				3BBFCC001C37A2380005EF79 /* Sounds */,
+				3BBFCC101C5464260005EF79 /* Grid.atlas */,
+				3BBFCBE41C2F6A390005EF79 /* Sprites.atlas */,
 				3BBFCBBC1C2F69370005EF79 /* Supporting Files */,
 			);
 			path = StarHunt;
@@ -120,6 +180,31 @@
 				3BBFCBD91C2F69370005EF79 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BBFCBEF1C350C7C0005EF79 /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				3BBFCBF01C350C7C0005EF79 /* Level_0.json */,
+				3BBFCBF11C350C7C0005EF79 /* Level_1.json */,
+				3BBFCBF21C350C7C0005EF79 /* Level_2.json */,
+				3BBFCBF31C350C7C0005EF79 /* Level_3.json */,
+				3BBFCBF41C350C7C0005EF79 /* Level_4.json */,
+			);
+			path = Levels;
+			sourceTree = "<group>";
+		};
+		3BBFCC001C37A2380005EF79 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3BBFCC011C37A2380005EF79 /* Chomp.wav */,
+				3BBFCC021C37A2380005EF79 /* Drip.wav */,
+				3BBFCC031C37A2380005EF79 /* Error.wav */,
+				3BBFCC041C37A2380005EF79 /* Ka-Ching.wav */,
+				3BBFCC051C37A2380005EF79 /* Mining by Moonlight.mp3 */,
+				3BBFCC061C37A2380005EF79 /* Scrape.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,10 +287,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BBFCBF61C350C7C0005EF79 /* Level_1.json in Resources */,
+				3BBFCBF91C350C7C0005EF79 /* Level_4.json in Resources */,
+				3BBFCC111C5464260005EF79 /* Grid.atlas in Resources */,
+				3BBFCC0A1C37A2380005EF79 /* Ka-Ching.wav in Resources */,
+				3BBFCC091C37A2380005EF79 /* Error.wav in Resources */,
+				3BBFCC0C1C37A2380005EF79 /* Scrape.wav in Resources */,
+				3BBFCBF81C350C7C0005EF79 /* Level_3.json in Resources */,
 				3BBFCBCF1C2F69370005EF79 /* LaunchScreen.xib in Resources */,
+				3BBFCBF51C350C7C0005EF79 /* Level_0.json in Resources */,
 				3BBFCBCC1C2F69370005EF79 /* Images.xcassets in Resources */,
+				3BBFCC071C37A2380005EF79 /* Chomp.wav in Resources */,
+				3BBFCC081C37A2380005EF79 /* Drip.wav in Resources */,
 				3BBFCBC41C2F69370005EF79 /* art.scnassets in Resources */,
+				3BBFCBF71C350C7C0005EF79 /* Level_2.json in Resources */,
 				3BBFCBCA1C2F69370005EF79 /* Main.storyboard in Resources */,
+				3BBFCC0B1C37A2380005EF79 /* Mining by Moonlight.mp3 in Resources */,
+				3BBFCBE51C2F6A390005EF79 /* Sprites.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,9 +321,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BBFCBED1C3382CE0005EF79 /* Level.m in Sources */,
+				3BBFCBE71C321E240005EF79 /* MyScene.m in Sources */,
 				3BBFCBC21C2F69370005EF79 /* AppDelegate.m in Sources */,
 				3BBFCBC71C2F69370005EF79 /* GameViewController.m in Sources */,
+				3BBFCBFE1C365EB80005EF79 /* MySwap.m in Sources */,
 				3BBFCBBF1C2F69370005EF79 /* main.m in Sources */,
+				3BBFCC0E1C3999900005EF79 /* Chain.m in Sources */,
+				3BBFCBFB1C350CC70005EF79 /* Tile.m in Sources */,
+				3BBFCBEA1C3247CB0005EF79 /* Cookie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
